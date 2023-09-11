@@ -1,95 +1,107 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+
+import Comment from "./components/Comment"
+import NewComment from "./components/NewComment"
+import { useState } from "react"
 
 export default function Home() {
+
+  const [data, setData] = useState(
+    {
+      "currentUser": {
+        "image": { 
+          "png": "./images/avatars/image-juliusomo.png",
+          "webp": "./images/avatars/image-juliusomo.webp"
+        },
+        "username": "juliusomo"
+      },
+      
+      "comments": [
+        {
+          "id": 1,
+          "content": "Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
+          "createdAt": "1 month ago",
+          "score": 12,
+          "user": {
+            "image": { 
+              "png": "./images/avatars/image-amyrobson.png",
+              "webp": "./images/avatars/image-amyrobson.webp"
+            },
+            "username": "amyrobson"
+          },
+          "replies": []
+        },
+        {
+          "id": 2,
+          "content": "Woah, your project looks awesome! How long have you been coding for? I'm still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!",
+          "createdAt": "2 weeks ago",
+          "score": 5,
+          "user": {
+            "image": { 
+              "png": "./images/avatars/image-maxblagun.png",
+              "webp": "./images/avatars/image-maxblagun.webp"
+            },
+            "username": "maxblagun"
+          },
+          "replies": [
+            {
+              "id": 3,
+              "content": "If you're still new, I'd recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It's very tempting to jump ahead but lay a solid foundation first.",
+              "createdAt": "1 week ago",
+              "score": 4,
+              "replyingTo": "maxblagun",
+              "user": {
+                "image": { 
+                  "png": "./images/avatars/image-ramsesmiron.png",
+                  "webp": "./images/avatars/image-ramsesmiron.webp"
+                },
+                "username": "ramsesmiron"
+              }
+            },
+            {
+              "id": 4,
+              "content": "I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.",
+              "createdAt": "2 days ago",
+              "score": 2,
+              "replyingTo": "ramsesmiron",
+              "user": {
+                "image": { 
+                  "png": "./images/avatars/image-juliusomo.png",
+                  "webp": "./images/avatars/image-juliusomo.webp"
+                },
+                "username": "juliusomo"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  )
+
+  let {currentUser, comments} = data
+
+  function addComment(newComment){
+    setData({...data, comments : [newComment, ...comments]})
+  }
+
+  function addReply(newReply){
+    console.log(newReply)
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <main className='main'>
+      {data.comments.map((comment, index) => 
+        <Comment 
+          comment={comment} 
+          key={index} 
+          currentUser={currentUser}
+          setData={setData}
+          comments={comments}
+          addReply={addReply}
+        /> 
+      )}
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <NewComment user={currentUser} onAddComment={addComment}/>
     </main>
   )
 }

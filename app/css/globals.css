@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(223, 19%, 93%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.comment, .reply {
+  background-color: hsl(0, 0%, 100%);
+  padding: 23px;
+  border-radius: 10px;
+  margin: 15px 0;
+  color: hsl(211, 10%, 45%);
+}
+.comment .top, .reply .top {
+  display: flex;
+  align-items: center;
+}
+.comment .top span img, .reply .top span img {
+  width: 35px;
+}
+.comment .top .username, .reply .top .username {
+  font-weight: 700;
+  color: hsl(212, 24%, 26%);
+  margin: 0 18px;
+}
+.comment .top .username_you, .reply .top .username_you {
+  margin: 0 15px;
+}
+.comment .top .username_you .username, .reply .top .username_you .username {
+  margin: 0;
+}
+.comment .top .username_you .you-text, .reply .top .username_you .you-text {
+  margin: 5px;
+  background-color: hsl(238, 40%, 52%);
+  color: hsl(0, 0%, 100%);
+  padding: 2.5px 7px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+.comment .content, .reply .content {
+  line-height: 24px;
+  margin: 20px 0;
+}
+.comment .score_reply, .reply .score_reply {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.comment .score_reply .score, .reply .score_reply .score {
+  display: flex;
+  align-items: center;
+  padding: 8px 11px;
+  background-color: hsl(223, 19%, 93%);
+  border-radius: 5px;
+}
+.comment .score_reply .score span, .reply .score_reply .score span {
+  margin: 0 13px;
+}
+.comment .score_reply .score img, .reply .score_reply .score img {
+  cursor: pointer;
+  padding: 5px;
+}
+.comment .score_reply .openreply-icon, .reply .score_reply .openreply-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+}
+.comment .score_reply .openreply-icon img, .reply .score_reply .openreply-icon img {
+  margin: 0 8px;
+}
+.comment .score_reply .openreply-icon span, .reply .score_reply .openreply-icon span {
+  color: hsl(238, 40%, 52%);
+  font-weight: 700;
+}
+.comment .score_reply .edit_delete_reply .edit-reply, .reply .score_reply .edit_delete_reply .edit-reply {
+  margin: 0 15px;
+  cursor: pointer;
+  padding: 3px;
+}
+.comment .score_reply .edit_delete_reply .delete-reply, .reply .score_reply .edit_delete_reply .delete-reply {
+  padding: 3px;
+  cursor: pointer;
+}
+.comment .score_reply .edit_delete_reply img, .reply .score_reply .edit_delete_reply img {
+  margin-right: 7px;
+}
+
+.replies {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  border-left: solid 2px hsl(211, 10%, 45%);
+}
+.replies .reply {
+  width: 95%;
+}
+
+.new_comment, .new_reply {
+  padding: 23px;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 10px;
+  margin: 15px 0;
+  color: hsl(211, 10%, 45%);
+}
+.new_comment img, .new_reply img {
+  width: 35px;
+}
+.new_comment textarea, .new_reply textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.new_comment button, .new_reply button {
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(238, 40%, 52%);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.new_comment button:active, .new_reply button:active {
+  background-color: hsl(238, 40%, 58%);
+}
+.new_comment .avatar_btn, .new_reply .avatar_btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.new_reply {
+  display: none;
+  transition: all 0.4s ease-in-out;
+}
+
+.active_new_reply {
+  display: block;
+}/*# sourceMappingURL=globals.css.map */
